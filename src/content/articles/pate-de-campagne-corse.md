@@ -1,6 +1,6 @@
 ---
-title: "Pâté de campagne corse"
-description: "La vraie recette du pâté de campagne à la corse, avec du porc nustrale et des herbes du maquis."
+title: "Pâté de campagne artisanal"
+description: "La vraie recette du pâté de campagne d'artisan, avec une viande de qualité et un assaisonnement maîtrisé."
 category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/pate-de-campagne-corse-hero.jpg"
@@ -12,7 +12,7 @@ author: "Jacques Bartoli"
 
 Le pâté de campagne, c'est le produit qui résume tout le savoir-faire d'un charcutier. Pas de triche possible — si la matière première est mauvaise, ça se sent immédiatement.
 
-Chez Antò, on travaille exclusivement avec du porc nustrale, race endémique corse élevée en semi-liberté dans le maquis. La viande est plus ferme, plus goûteuse, avec un gras qui a du caractère.
+On travaille avec du porc de qualité, élevé en plein air. La viande est plus ferme, plus goûteuse, avec un gras qui a du caractère.
 
 ## Les ingrédients
 
@@ -22,9 +22,9 @@ Chez Antò, on travaille exclusivement avec du porc nustrale, race endémique co
 - 3 gousses d'ail
 - Sel fin (18 g/kg)
 - Poivre noir fraîchement moulu
-- Herbes du maquis (myrte, nepita, romarin)
+- Herbes aromatiques (thym, romarin, laurier)
 - 1 œuf
-- 50 ml d'eau-de-vie corse
+- 50 ml d'eau-de-vie
 
 ## La méthode
 
@@ -38,7 +38,7 @@ Hachoir grille de 8 mm pour la gorge. On veut de la texture, pas de la purée. L
 
 ### 3. L'assaisonnement
 
-Tout se mélange à la main, dans une bassine froide. L'œuf et l'eau-de-vie en dernier. Les herbes du maquis infusent leur parfum pendant la nuit au frigo (repos obligatoire de 12h minimum).
+Tout se mélange à la main, dans une bassine froide. L'œuf et l'eau-de-vie en dernier. Les herbes infusent leur parfum pendant la nuit au frigo (repos obligatoire de 12h minimum).
 
 ### 4. La cuisson
 
@@ -52,6 +52,6 @@ Temps de cuisson : environ 1h30 pour une terrine d'1 kg.
 
 ## Le résultat
 
-Un pâté rustique, avec une vraie mâche, des arômes de maquis qui persistent en bouche. Rien à voir avec les versions industrielles.
+Un pâté rustique, avec une vraie mâche, des arômes qui persistent en bouche. Rien à voir avec les versions industrielles.
 
-C'est ça, la charcuterie artisanale corse.
+C'est ça, la charcuterie artisanale.
