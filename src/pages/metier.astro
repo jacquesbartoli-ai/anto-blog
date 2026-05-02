@@ -15,7 +15,7 @@ const articles = (await getCollection('articles'))
 
   <div class="articles-grid">
     {articles.map((article) => (
-      <a href={`/articles/${article.id}`} class="article-card">
+      <a href={`/articles/${article.id.replace(/\.md$/, '')}`} class="article-card">
         <img src={article.data.heroImage} alt={article.data.title} />
         <div class="card-content">
           <span class="category-tag">{article.data.category}</span>
