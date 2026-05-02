@@ -13,7 +13,7 @@ const { title, description = "Blog Antò — Recettes et savoir-faire artisanal"
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title} | Blog Antò</title>
+  <title>{title} | Le Blog Antò</title>
   <meta name="description" content={description} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -21,16 +21,20 @@ const { title, description = "Blog Antò — Recettes et savoir-faire artisanal"
   <meta property="og:type" content="article" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/images/anto-logo.png" />
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="/"><h1>Antò</h1></a>
+      <a href="/" class="logo-link">
+        <img src="/images/anto-logo.png" alt="Antò" class="logo" />
+        <span class="logo-text">le blog</span>
+      </a>
       <nav>
         <a href="/">Recettes</a>
         <a href="/metier">Métier</a>
+        <a href="https://heyanto.fr" target="_blank" class="nav-cta">Découvrir Antò →</a>
       </nav>
     </div>
   </header>
@@ -39,7 +43,11 @@ const { title, description = "Blog Antò — Recettes et savoir-faire artisanal"
   </main>
   <footer>
     <div class="container">
-      <p>&copy; {new Date().getFullYear()} Antò — Artisan de l'alimentaire</p>
+      <a href="https://heyanto.fr" target="_blank" class="footer-logo-link">
+        <img src="/images/anto-logo.png" alt="Antò" class="footer-logo" />
+      </a>
+      <p>Le copilote IA des artisans de l'alimentaire</p>
+      <a href="https://heyanto.fr" target="_blank" class="footer-cta">Essayer Antò gratuitement →</a>
     </div>
   </footer>
 </body>
