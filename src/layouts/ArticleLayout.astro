@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 
 const { frontmatter } = Astro.props;
 ---
@@ -14,4 +15,5 @@ const { frontmatter } = Astro.props;
       <slot />
     </div>
   </article>
+  <NewsletterForm variant="inline" />
 </BaseLayout>

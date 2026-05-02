@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+---
+
+<BaseLayout title="Newsletter" description="Recevez nos conseils métier, recettes et astuces pour gagner du temps en atelier.">
+  <div class="newsletter-page">
+    <NewsletterForm variant="full" />
+  </div>
+</BaseLayout>
+
+<style>
+  .newsletter-page {
+    max-width: 560px;
+    margin: 2rem auto;
+  }
+</style>
