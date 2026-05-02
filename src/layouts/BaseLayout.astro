@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "Blog Antò — Recettes et savoir-faire artisanal corse", image } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | Blog Antò</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  {image && <meta property="og:image" content={image} />}
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/"><h1>Antò</h1></a>
+      <nav>
+        <a href="/">Recettes</a>
+        <a href="/metier">Métier</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <slot />
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} Antò — Charcuterie artisanale corse</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

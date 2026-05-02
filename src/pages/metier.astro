@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles'))
+  .filter(a => a.data.type === 'metier')
+  .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+---
+
+<BaseLayout title="Métier">
+  <h1>Le métier</h1>
+  <p style="margin-top: 0.5rem; color: #666; font-size: 1.1rem;">
+    Coulisses de l'atelier, savoir-faire et traditions.
+  </p>
+
+  <div class="articles-grid">
+    {articles.map((article) => (
+      <a href={`/articles/${article.id}`} class="article-card">
+        <img src={article.data.heroImage} alt={article.data.title} />
+        <div class="card-content">
+          <span class="category-tag">{article.data.category}</span>
+          <h2>{article.data.title}</h2>
+          <p>{article.data.description}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {articles.length === 0 && (
+    <p style="margin-top: 3rem; text-align: center; color: #888;">
+      Les articles métier arrivent bientôt.
+    </p>
+  )}
+</BaseLayout>
