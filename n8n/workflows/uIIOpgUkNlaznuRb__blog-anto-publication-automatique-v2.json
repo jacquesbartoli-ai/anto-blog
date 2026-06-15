@@ -1,0 +1,560 @@
+{
+  "name": "Blog Antò — Publication automatique v2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Cron 7h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "articles"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "ready"
+            }
+          ]
+        },
+        "options": {
+          "range": "A:L",
+          "returnAllMatches": false
+        }
+      },
+      "id": "sheets-read",
+      "name": "Lire recette brute",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        420,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "521uSpaNWYcoaChX",
+          "name": "Google Sheets & Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "none",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "={{ $env.GEMINI_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ text: \"Tu es un artisan qui écrit son blog. Style direct, vivant, drôle, jamais corporate. Tutoie le lecteur. Phrases courtes. Des emojis. Comme si tu racontais ta recette à un pote dans l'atelier. OBLIGATOIRE pour les recettes : liste COMPLETE ingrédients + détails PRECIS cuisson. Structure libre ## ###. Aucune ref géographique. Génère aussi : 1) image_prompt EN ANGLAIS pour photo food. REGLES PHOTO STRICTES : mentionner la TAILLE REELLE du produit (ex: 'a 15cm blood sausage', 'a small 8cm wide terrine'), inclure un objet de référence pour l'échelle (couteau, planche, assiette), préciser 'realistic food proportions, actual real-world size', style 'professional food photography, overhead shot, warm natural lighting, rustic wooden surface, no text, no person, no hands, sharp focus'. 2) facebook_post (max 200 chars, 1-2 emojis, lien https://blog.heyanto.fr/articles/\" + $json.slug + \") 3) instagram_caption (max 1500 chars, authentique, 10 hashtags) 4) linkedin_post (pro mais humain, max 400 chars). Recette : \" + $json.name + \" — \" + ($json.description || $json.name) + \". JSON strict (\\\\n pour sauts de ligne): { \\\"article\\\": \\\"...\\\", \\\"image_prompt\\\": \\\"...\\\", \\\"facebook_post\\\": \\\"...\\\", \\\"instagram_caption\\\": \\\"...\\\", \\\"linkedin_post\\\": \\\"...\\\" }\" }] }], generationConfig: { responseMimeType: \"application/json\" } }) }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "gemini-generate",
+      "name": "Gemini — Générer contenu",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonata",
+        "jsonata": "($parsed := $parseJson(candidates[0].content.parts[0].text); { \"article\": $parsed.article, \"image_prompt\": $parsed.image_prompt, \"facebook_post\": $parsed.facebook_post, \"instagram_caption\": $parsed.instagram_caption, \"linkedin_post\": $parsed.linkedin_post, \"slug\": $node[\"Lire recette brute\"].json.slug, \"name\": $node[\"Lire recette brute\"].json.name, \"category\": $node[\"Lire recette brute\"].json.category, \"type\": $node[\"Lire recette brute\"].json.type })",
+        "options": {}
+      },
+      "id": "parse-gemini",
+      "name": "Parser réponse Gemini",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.x.ai/v1/images/generations",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.XAI_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'grok-imagine-image', prompt: $json.image_prompt, n: 1, response_format: 'b64_json' }) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "grok-image",
+      "name": "Grok — Générer image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={{ $env.GEMINI_API_KEY }}",
+        "authentication": "none",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ inlineData: { mimeType: 'image/jpeg', data: $('Grok — Générer image').item.json.data[0].b64_json } }, { text: 'Tu es un directeur artistique food. Analyse cette photo. Vérifie STRICTEMENT : 1) Les PROPORTIONS sont-elles réalistes ? (un boudin fait 3-4cm de diamètre pas 20cm, une terrine fait 25cm max, un saucisson fait 5cm de diamètre) 2) La TAILLE du produit est cohérente avec les objets autour ? 3) Pas de texte sur image ? 4) Photo appétissante ? Réponds JSON: { \"valid\": true ou false, \"issue\": \"description si invalid\" }' }] }], generationConfig: { responseMimeType: 'application/json' } }) }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "validate-image",
+      "name": "Valider image (Gemini Vision)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1220,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli-ai/anto-blog/contents/src/content/articles/{{ $('Parser réponse Gemini').item.json.slug }}.md",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'Publish: ' + $('Parser réponse Gemini').item.json.name, content: Buffer.from('---\\ntitle: \"' + $('Parser réponse Gemini').item.json.name + '\"\\ndescription: \"Recette artisanale — ' + $('Parser réponse Gemini').item.json.name + '\"\\ncategory: \"' + ($('Parser réponse Gemini').item.json.category || 'Charcuterie') + '\"\\ntype: \"' + ($('Parser réponse Gemini').item.json.type || 'recette') + '\"\\nheroImage: \"/images/articles/' + $('Parser réponse Gemini').item.json.slug + '-hero.jpg\"\\npublishedDate: \"' + $now.format('yyyy-MM-dd') + '\"\\nauthor: \"Jacques Bartoli\"\\n---\\n\\n' + $('Parser réponse Gemini').item.json.article).toString('base64') }) }}",
+        "options": {
+          "headers": {
+            "Accept": "application/vnd.github.v3+json"
+          }
+        }
+      },
+      "id": "github-push-article",
+      "name": "GitHub — Push article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1340,
+        350
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Hso7UNxUp9lepuvp",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli-ai/anto-blog/contents/public/images/articles/{{ $('Parser réponse Gemini').item.json.slug }}-hero.jpg",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'Add hero: ' + $('Parser réponse Gemini').item.json.name, content: $('Grok — Générer image').item.json.data[0].b64_json }) }}",
+        "options": {
+          "headers": {
+            "Accept": "application/vnd.github.v3+json"
+          }
+        }
+      },
+      "id": "github-push-image",
+      "name": "GitHub — Push image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1340,
+        150
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Hso7UNxUp9lepuvp",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 90,
+        "unit": "seconds"
+      },
+      "id": "wait-vercel",
+      "name": "Attendre Vercel (90s)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1560,
+        300
+      ],
+      "webhookId": "887a4b61-a1b6-458e-a0f7-4ff65f18d366"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.FB_PAGE_ID }}/photos",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ url: 'https://blog.heyanto.fr/images/articles/' + $('Parser réponse Gemini').item.json.slug + '-hero.jpg', caption: $('Parser réponse Gemini').item.json.facebook_post + '\\n\\n📖 La recette complète → https://blog.heyanto.fr/articles/' + $('Parser réponse Gemini').item.json.slug, access_token: $env.META_PAGE_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "facebook-post",
+      "name": "Facebook — Poster",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1780,
+        150
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_USER_ID }}/media",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ image_url: 'https://blog.heyanto.fr/images/articles/' + $('Parser réponse Gemini').item.json.slug + '-hero.jpg', caption: $('Parser réponse Gemini').item.json.instagram_caption, access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "instagram-create",
+      "name": "Instagram — Créer media",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_USER_ID }}/media_publish",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ creation_id: $json.id, access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "instagram-publish",
+      "name": "Instagram — Publier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "articles"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Lire recette brute').item.json.id }}",
+            "status": "done",
+            "published_date": "={{ $now.format('yyyy-MM-dd') }}",
+            "blog_url": "=https://blog.heyanto.fr/articles/{{ $('Parser réponse Gemini').item.json.slug }}",
+            "social_posted": "fb,ig"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-update",
+      "name": "Marquer publié",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2220,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "521uSpaNWYcoaChX",
+          "name": "Google Sheets & Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $json.id }}/comments",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: '📖 La recette complète → https://blog.heyanto.fr/articles/' + $('Parser réponse Gemini').item.json.slug, access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "instagram-comment",
+      "name": "Instagram — Commenter lien",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.buffer.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.BUFFER_API_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: 'mutation CreatePost($input: CreatePostInput!) { createPost(input: $input) { ... on PostActionSuccess { post { id status } } ... on UnexpectedError { message } } }', variables: { input: { channelId: $env.BUFFER_LINKEDIN_CHANNEL_ID, schedulingType: 'automatic', mode: 'shareNow', text: $('Parser réponse Gemini').item.json.linkedin_post + '\\n\\n📖 La recette complète → https://blog.heyanto.fr/articles/' + $('Parser réponse Gemini').item.json.slug, assets: { images: [{ url: 'https://blog.heyanto.fr/images/articles/' + $('Parser réponse Gemini').item.json.slug + '-hero.jpg' }] } } } }) }}",
+        "options": {}
+      },
+      "id": "linkedin-buffer",
+      "name": "LinkedIn — Poster (Buffer)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1780,
+        -150
+      ]
+    }
+  ],
+  "connections": {
+    "Cron 7h": {
+      "main": [
+        [
+          {
+            "node": "Lire recette brute",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire recette brute": {
+      "main": [
+        [
+          {
+            "node": "Gemini — Générer contenu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini — Générer contenu": {
+      "main": [
+        [
+          {
+            "node": "Parser réponse Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser réponse Gemini": {
+      "main": [
+        [
+          {
+            "node": "Grok — Générer image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GitHub — Push article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grok — Générer image": {
+      "main": [
+        [
+          {
+            "node": "Valider image (Gemini Vision)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push article": {
+      "main": [
+        [
+          {
+            "node": "Attendre Vercel (90s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push image": {
+      "main": [
+        [
+          {
+            "node": "Attendre Vercel (90s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendre Vercel (90s)": {
+      "main": [
+        [
+          {
+            "node": "Facebook — Poster",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Instagram — Créer media",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn — Poster (Buffer)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Créer media": {
+      "main": [
+        [
+          {
+            "node": "Instagram — Publier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook — Poster": {
+      "main": [
+        [
+          {
+            "node": "Marquer publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Publier": {
+      "main": [
+        [
+          {
+            "node": "Instagram — Commenter lien",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valider image (Gemini Vision)": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Push image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Commenter lien": {
+      "main": [
+        [
+          {
+            "node": "Marquer publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn — Poster (Buffer)": {
+      "main": [
+        [
+          {
+            "node": "Marquer publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris"
+  },
+  "staticData": null,
+  "pinData": null,
+  "meta": null
+}

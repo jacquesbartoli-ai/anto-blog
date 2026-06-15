@@ -1,0 +1,481 @@
+{
+  "name": "Blog Antò — Publication automatique",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Tous les jours 7h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "articles"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "",
+              "condition": "notEqual"
+            }
+          ]
+        },
+        "options": {
+          "range": "A:L",
+          "returnAllMatches": false
+        }
+      },
+      "id": "sheets-read",
+      "name": "Lire article du jour",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        470,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "521uSpaNWYcoaChX",
+          "name": "Google Sheets & Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.drive_folder }}"
+        },
+        "fileName": "={{ $json.article_filename }}",
+        "options": {}
+      },
+      "id": "drive-article",
+      "name": "Drive — Télécharger article MD",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        690,
+        250
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pMPijfEgPiB5Y9lb",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.drive_folder }}"
+        },
+        "fileName": "={{ $json.hero_image }}",
+        "options": {}
+      },
+      "id": "drive-hero-image",
+      "name": "Drive — Télécharger image hero",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        690,
+        400
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pMPijfEgPiB5Y9lb",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli-ai/anto-blog/contents/src/content/articles/{{ $('Lire article du jour').item.json.article_filename }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'Publish: ' + $('Lire article du jour').item.json.name, content: $('Drive — Télécharger article MD').item.binary.data.data }) }}",
+        "options": {
+          "headers": {
+            "Accept": "application/vnd.github.v3+json"
+          }
+        }
+      },
+      "id": "github-push-article",
+      "name": "GitHub — Push article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        930,
+        250
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Hso7UNxUp9lepuvp",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli-ai/anto-blog/contents/public/images/articles/{{ $('Lire article du jour').item.json.slug }}-hero.jpg",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'Add hero: ' + $('Lire article du jour').item.json.name, content: $('Drive — Télécharger image hero').item.binary.data.data }) }}",
+        "options": {
+          "headers": {
+            "Accept": "application/vnd.github.v3+json"
+          }
+        }
+      },
+      "id": "github-push-image",
+      "name": "GitHub — Push image hero",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        930,
+        400
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Hso7UNxUp9lepuvp",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 90,
+        "unit": "seconds"
+      },
+      "id": "wait-vercel",
+      "name": "Attendre déploiement Vercel (90s)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1170,
+        300
+      ],
+      "webhookId": "7823d3bd-55fa-4933-a490-3bc7443c3277"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.FB_PAGE_ID }}/feed",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: '📝 Nouvelle recette sur le blog !\\n\\n' + $('Lire article du jour').item.json.name + ' — ma recette d\\'artisan, pas celle d\\'Internet.\\n\\n👉 https://blog.heyanto.fr/articles/' + $('Lire article du jour').item.json.slug + '\\n\\n#artisan #recette #faitmaison #savoirfaire #anto', link: 'https://blog.heyanto.fr/articles/' + $('Lire article du jour').item.json.slug, access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "facebook-post",
+      "name": "Facebook — Poster",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1410,
+        150
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "kmfwR3rjxyx25cYX",
+          "name": "Meta Business Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_USER_ID }}/media",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ image_url: 'https://blog.heyanto.fr/images/articles/' + $('Lire article du jour').item.json.slug + '-hero.jpg', caption: $('Lire article du jour').item.json.name + ' — ma recette d\\'artisan 🍖\\n\\nLa recette complète sur le blog (lien en bio) 👆\\n\\n#artisan #recette #faitmaison #savoirfaire #terroir #anto #madeinfrance #food #artisanat', access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "instagram-create",
+      "name": "Instagram — Créer media",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1410,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "kmfwR3rjxyx25cYX",
+          "name": "Meta Business Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_USER_ID }}/media_publish",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ creation_id: $json.id, access_token: $env.META_ACCESS_TOKEN }) }}",
+        "options": {}
+      },
+      "id": "instagram-publish",
+      "name": "Instagram — Publier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1630,
+        300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "kmfwR3rjxyx25cYX",
+          "name": "Meta Business Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "text": "={{ 'Nouvelle recette sur le blog Antò — ' + $('Lire article du jour').item.json.name + '\\n\\nLes artisans alimentaires méritent des outils à la hauteur de leur savoir-faire. C\\'est ce qu\\'on construit avec Antò.\\n\\n\\ud83d\\udc49 https://blog.heyanto.fr/articles/' + $('Lire article du jour').item.json.slug }}",
+        "mediaCategory": "ARTICLE",
+        "additionalFields": {
+          "originalUrl": "=https://blog.heyanto.fr/articles/{{ $('Lire article du jour').item.json.slug }}"
+        }
+      },
+      "id": "linkedin-post",
+      "name": "LinkedIn — Poster",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        1410,
+        450
+      ],
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "LINKEDIN_OAUTH2_CREDENTIAL_ID",
+          "name": "LinkedIn OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "articles"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Lire article du jour').item.json.id }}",
+            "status": "done",
+            "published_date": "={{ $now.format('yyyy-MM-dd') }}",
+            "blog_url": "=https://blog.heyanto.fr/articles/{{ $('Lire article du jour').item.json.slug }}",
+            "social_posted": "fb,ig,li"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-update",
+      "name": "Marquer comme publié",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1850,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "521uSpaNWYcoaChX",
+          "name": "Google Sheets & Drive OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Tous les jours 7h": {
+      "main": [
+        [
+          {
+            "node": "Lire article du jour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire article du jour": {
+      "main": [
+        [
+          {
+            "node": "Drive — Télécharger article MD",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Drive — Télécharger image hero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive — Télécharger article MD": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Push article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive — Télécharger image hero": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Push image hero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push article": {
+      "main": [
+        [
+          {
+            "node": "Attendre déploiement Vercel (90s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push image hero": {
+      "main": [
+        [
+          {
+            "node": "Attendre déploiement Vercel (90s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendre déploiement Vercel (90s)": {
+      "main": [
+        [
+          {
+            "node": "Facebook — Poster",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Instagram — Créer media",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn — Poster",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Créer media": {
+      "main": [
+        [
+          {
+            "node": "Instagram — Publier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook — Poster": {
+      "main": [
+        [
+          {
+            "node": "Marquer comme publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Publier": {
+      "main": [
+        [
+          {
+            "node": "Marquer comme publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn — Poster": {
+      "main": [
+        [
+          {
+            "node": "Marquer comme publié",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris"
+  },
+  "staticData": {
+    "node:Tous les jours 7h": {
+      "recurrenceRules": []
+    }
+  },
+  "pinData": null,
+  "meta": null
+}

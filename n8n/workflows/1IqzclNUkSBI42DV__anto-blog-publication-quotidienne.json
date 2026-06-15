@@ -1,0 +1,449 @@
+{
+  "name": "Antò Blog — Publication quotidienne",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "07ab726b-6f5e-4165-b51b-d8d8595a577a",
+      "name": "Tous les jours 7h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1328,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "articles"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "todo"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "898684e9-0426-4074-a501-39000cf76c61",
+      "name": "Lire article du jour",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1104,
+        144
+      ],
+      "notes": "Lit la première ligne avec status=todo dans le Sheet 'Blog Antò — Tracking'. Colonnes : id, name, category, type, slug, drive_article_id, drive_images_folder_id, facebook_text, instagram_text, linkedin_text, status"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.drive_article_id }}"
+        },
+        "options": {}
+      },
+      "id": "86a4d93f-2b59-4a30-b4f4-6bea53101fc3",
+      "name": "Télécharger article MD",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -880,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "list"
+      },
+      "id": "5c454266-3598-4c28-a4b2-eed5e2817234",
+      "name": "Lister images Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -880,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {}
+      },
+      "id": "c4d6bd7d-2d4e-43d4-96a2-df45b412bc71",
+      "name": "Télécharger chaque image",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -656,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli/anto-blog/contents/src/content/articles/{{ $('Lire article du jour').item.json.slug }}.md",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"Publish: {{ $('Lire article du jour').item.json.name }}\",\n  \"content\": \"{{ $('Télécharger article MD').item.binary.data.data }}\"\n}",
+        "options": {}
+      },
+      "id": "baefe90d-56d1-4f8f-99ec-d1ee5eee64dc",
+      "name": "GitHub — Push article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        48
+      ],
+      "notes": "Push le fichier markdown dans le repo anto-blog. Vercel détecte le push et déploie automatiquement."
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/jacquesbartoli/anto-blog/contents/public/images/articles/{{ $json.name }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"Image: {{ $json.name }}\",\n  \"content\": \"{{ $binary.data.data }}\"\n}",
+        "options": {}
+      },
+      "id": "8648b141-8a12-4428-9cd2-5d3ff2ea225f",
+      "name": "GitHub — Push images",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 90
+      },
+      "id": "ce80107d-2233-45ed-8858-12a94f0eb03a",
+      "name": "Attendre déploiement Vercel",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        144
+      ],
+      "webhookId": "wait-vercel"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $credentials.facebookPageId }}/photos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"url\": \"https://blog.heyanto.fr/images/articles/{{ $('Lire article du jour').item.json.slug }}-hero.jpg\",\n  \"message\": \"{{ $('Lire article du jour').item.json.facebook_text }}\\n\\n👉 https://blog.heyanto.fr/articles/{{ $('Lire article du jour').item.json.slug }}\"\n}",
+        "options": {}
+      },
+      "id": "ee6693b9-e02b-4f27-8163-9a92bef54500",
+      "name": "Facebook — Poster",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        0
+      ],
+      "notes": "Poste une photo avec le texte sur la Page Facebook. Le token Meta est passé en query param access_token via httpQueryAuth."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $credentials.instagramUserId }}/media",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image_url\": \"https://blog.heyanto.fr/images/articles/{{ $('Lire article du jour').item.json.slug }}-hero.jpg\",\n  \"caption\": \"{{ $('Lire article du jour').item.json.instagram_text }}\"\n}",
+        "options": {}
+      },
+      "id": "4b64f2b6-3ba2-4bdb-9585-468e3b877cd8",
+      "name": "Instagram — Créer media",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        144
+      ],
+      "notes": "Étape 1/2 Instagram : crée le container media avec l'image et la caption. Retourne un creation_id."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $credentials.instagramUserId }}/media_publish",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"creation_id\": \"{{ $json.id }}\"\n}",
+        "options": {}
+      },
+      "id": "222c0844-e485-421e-988f-0c437153f686",
+      "name": "Instagram — Publier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        144
+      ],
+      "notes": "Étape 2/2 Instagram : publie le media créé à l'étape précédente."
+    },
+    {
+      "parameters": {
+        "operation": "post"
+      },
+      "id": "09676960-c49f-4063-8647-c9190a2641b5",
+      "name": "LinkedIn — Poster",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        0,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "articles"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "done",
+            "published_date": "={{ new Date().toISOString().split('T')[0] }}",
+            "blog_url": "=https://blog.heyanto.fr/articles/{{ $('Lire article du jour').item.json.slug }}",
+            "social_posted": "fb,ig,li"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "07cfc13c-1a20-4bcd-b0ee-ad8115d4f3d0",
+      "name": "Tracking — Marquer done",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        448,
+        144
+      ]
+    }
+  ],
+  "connections": {
+    "Tous les jours 7h": {
+      "main": [
+        [
+          {
+            "node": "Lire article du jour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire article du jour": {
+      "main": [
+        [
+          {
+            "node": "Télécharger article MD",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Lister images Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger article MD": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Push article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lister images Drive": {
+      "main": [
+        [
+          {
+            "node": "Télécharger chaque image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger chaque image": {
+      "main": [
+        [
+          {
+            "node": "GitHub — Push images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push article": {
+      "main": [
+        [
+          {
+            "node": "Attendre déploiement Vercel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub — Push images": {
+      "main": [
+        [
+          {
+            "node": "Attendre déploiement Vercel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendre déploiement Vercel": {
+      "main": [
+        [
+          {
+            "node": "Facebook — Poster",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Instagram — Créer media",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn — Poster",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Créer media": {
+      "main": [
+        [
+          {
+            "node": "Instagram — Publier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook — Poster": {
+      "main": [
+        [
+          {
+            "node": "Tracking — Marquer done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — Publier": {
+      "main": [
+        [
+          {
+            "node": "Tracking — Marquer done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn — Poster": {
+      "main": [
+        [
+          {
+            "node": "Tracking — Marquer done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "pinData": {},
+  "meta": null
+}
