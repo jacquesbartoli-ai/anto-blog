@@ -6,6 +6,18 @@ type: "recette"
 heroImage: "/images/articles/saucisson-sec-maison-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Pour un saucisson sec maison, partez sur une mêlée 70% maigre (épaule de porc) / 30% gras dur (lard de dos), hachée à la grille de 8-10 mm. Dosez par kilo de mêlée : 28 g de sel, 4 g de poivre noir et 0,3 g de salpêtre (pesé au gramme près), plus vin rouge et ail. Embossez en boyau naturel de porc (38-42 mm), puis fermentez 48 h à 20°C et 90% d'humidité, et séchez environ 5 semaines à 12-14°C et 75% d'humidité. Le saucisson est prêt quand il a perdu 30 à 35% de son poids initial et qu'il est ferme sans être dur."
+faq:
+  - question: "Quel ratio maigre/gras pour un saucisson sec maison ?"
+    answer: "On vise 70% de maigre (épaule de porc bien persillée) et 30% de gras dur (lard de dos), c'est le secret d'une texture parfaite et d'un goût qui tient. Pour 2,8 kg de mêlée, comptez 2 kg d'épaule et 800 g de lard dur de dos."
+  - question: "Combien de sel, de poivre et de salpêtre par kilo de mêlée ?"
+    answer: "Par kilo de mêlée : 28 g de sel fin, 4 g de poivre noir concassé et 0,3 g de salpêtre (nitrate de potassium). Le salpêtre, dose minime mais essentielle pour la couleur et la conservation, doit être pesé au gramme près. Le sel assure aussi la sécurité sanitaire du saucisson."
+  - question: "Quelles températures et durées pour la fermentation puis le séchage ?"
+    answer: "Fermentation (étuvage) : 48 heures à 20°C avec environ 90% d'humidité relative, pour développer les bonnes bactéries, stabiliser la couleur et amorcer l'acidité. Séchage : environ 5 semaines à 12-14°C avec 75% d'humidité, en évitant les variations brusques de température et d'humidité."
+  - question: "Comment savoir si mon saucisson est prêt à être dégusté ?"
+    answer: "Le saucisson est prêt quand il a perdu environ 30 à 35% de son poids initial (pesez-le avant et pendant le séchage). Il doit être ferme au toucher mais pas dur comme du bois, et \"chanter\" un peu sous les doigts quand on le presse."
+  - question: "Que faire si une moisissure verte ou noire apparaît pendant le séchage ?"
+    answer: "Une \"fleur\" blanche (pénicillium) est normale et protège le saucisson en lui donnant son goût caractéristique. En revanche, le vert ou le noir n'est pas bon : il faut l'enlever avec un chiffon imbibé de vinaigre blanc. Avec de bonnes conditions de séchage, vous obtiendrez une fleur blanche uniforme."
 ---
 
 ## Mon Saucisson Sec Maison : L'aventure Charcutière qui sent bon ! 🐖🍷
@@ -25,6 +37,14 @@ Pour environ 2,8 kg de mêlée (c'est comme ça qu'on appelle notre mélange via
 *   **Vin rouge :** 50 ml. Un bon vin rouge, costaud, type Côtes du Rhône ou un bon Merlot. Pas la piquette, sinon ton saucisson va te le faire payer ! 
 *   **Ail :** 3 grosses gousses, dégermées et hachées finement. L'ail, c'est la petite touche qui fait la différence. 
 *   **Boyau naturel de porc :** Calibre moyen (environ 38-42 mm). Demande à ton boucher, il saura te conseiller. Laisse-les tremper dans l'eau tiède une bonne heure avant de les utiliser pour les assouplir.
+
+Pour t'y retrouver, voici les dosages d'assaisonnement, par kilo de mêlée et pour 2,8 kg de mêlée :
+
+| Assaisonnement | Par kg de mêlée | Pour 2,8 kg de mêlée |
+| --- | --- | --- |
+| Sel fin | 28 g | 78,4 g |
+| Poivre noir concassé | 4 g | 11,2 g |
+| Salpêtre (nitrate de potassium) | 0,3 g | 0,84 g |
 
 ### Étape 2 : La Préparation, on ne rigole plus ! 🔪
 

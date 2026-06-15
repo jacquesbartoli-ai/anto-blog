@@ -6,6 +6,18 @@ type: "recette"
 heroImage: "/images/articles/terrine-de-foie-gras-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Pour une terrine de foie gras mi-cuit (1 foie de canard cru déveiné de 500-600 g), assaisonnez à 12 g de sel, 2 g de poivre blanc et 2 g de sucre par kilo, plus 30 ml de Porto et 20 ml de Cognac, puis laissez mariner 12 à 24 h au frais. Cuisez au bain-marie à 110°C pendant environ 40 min jusqu'à une température à cœur de 65°C (ne jamais dépasser 68°C sous peine de voir le foie fondre). Pressez la terrine tiède sous un poids, puis laissez reposer au réfrigérateur au moins 48 h (idéalement 72 h). Elle se conserve filmée 10 à 12 jours au frais."
+faq:
+  - question: "Quel dosage de sel, poivre et sucre par kilo de foie gras ?"
+    answer: "Comptez 12 g de sel fin, 2 g de poivre blanc moulu et 2 g de sucre en poudre par kilo de foie gras. Pour un foie de 550 g, cela fait 6,6 g de sel, 1,1 g de poivre et 1,1 g de sucre. Le poivre blanc est plus doux et respecte le goût du foie, et le sucre révèle les saveurs."
+  - question: "À quelle température à cœur faut-il cuire le foie gras mi-cuit ?"
+    answer: "On vise une température interne de 65°C, mesurée avec une sonde thermique insérée au centre du foie. Il ne faut JAMAIS dépasser 68°C, sinon le foie fond et rend sa graisse. La cuisson se fait au bain-marie à 110°C (thermostat 3-4), comptez environ 40 minutes pour un foie de 500-600 g, mais c'est bien la température à cœur qui fait foi."
+  - question: "Combien de temps faut-il faire mariner puis reposer la terrine ?"
+    answer: "Après assaisonnement et arrosage au Porto et Cognac, laissez mariner les lobes au frais minimum 12 heures, idéalement 24 heures. Après cuisson et pressage, remettez la terrine au réfrigérateur, toujours pressée sous un poids, pendant au moins 48 heures, idéalement 72 heures : plus elle repose, plus les saveurs s'intensifient et plus la texture devient parfaite."
+  - question: "Comment se conserve un foie gras mi-cuit maison ?"
+    answer: "Bien filmé et gardé au frais, il se conserve jusqu'à 10-12 jours. Sortez-le du réfrigérateur 15-20 minutes avant de servir et coupez de belles tranches avec un couteau chaud et humide. Accompagnez de pain de campagne grillé, de confiture de figues ou d'un chutney d'oignons."
+  - question: "Pourquoi faut-il bien déveiner et presser le foie gras ?"
+    answer: "Le déveinage retire la veine principale et toutes les petites veines secondaires : laissées en place, elles donnent de l'amertume et sont moches à la coupe. Le pressage de la terrine tiède sous un poids (carton ou couvercle plus brique/conserves) expulse l'excès de graisse et compacte le foie, ce qui donne une texture fondante et uniforme."
 ---
 
 ## Eh, coucou les gourmands ! 👋
@@ -26,6 +38,16 @@ On va faire ça propre. Simple. Efficace. Oublie les trucs compliqués, la perfe
 *   **Sucre en poudre** : 2g par kilo de foie gras. Oui, du sucre ! Ça révèle les saveurs, ça adoucit. Pour 550g, 1.1g. C'est magique, tu verras.
 *   **Porto rouge** : 30 ml (pour un foie de 500-600g). Un bon Porto, pas le fond de bouteille de Tatie Josette.
 *   **Cognac** : 20 ml (pour un foie de 500-600g). Pareil, tu prends pas le premier prix. Ça parfume, ça sublime.
+
+Pour t'y retrouver d'un coup d'œil, voilà le récap des dosages (avec l'exemple d'un foie de 550g) :
+
+| Assaisonnement | Dose par kilo | Pour un foie de 550g |
+| --- | --- | --- |
+| Sel fin | 12 g | 6,6 g |
+| Poivre blanc moulu | 2 g | 1,1 g |
+| Sucre en poudre | 2 g | 1,1 g |
+| Porto rouge | — | 30 ml |
+| Cognac | — | 20 ml |
 
 ### Au boulot, les mains dans le cambouis ! La préparation, étape par étape 🧑‍🔧
 

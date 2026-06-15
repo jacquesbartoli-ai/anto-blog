@@ -6,6 +6,20 @@ type: "recette"
 heroImage: "/images/articles/boudin-noir-artisanal-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Le boudin noir artisanal se prépare avec une farce de 2 kg : 1 L de sang frais de porc défibriné (≈ 1 kg), 500 g d'oignons fondus à feu très doux 20-30 min sans coloration, 200 g de crème entière 30 %, 300 g de lard gras en dés de 5 mm, 36 g de sel (18 g/kg) et 2 g de quatre-épices. Après embossage en boyau (calibre moyen, 2,5 à 3 m) et piquage à l'aiguille, on poche les boudins à exactement 85 °C pendant 20 minutes, sans jamais faire bouillir, puis on les plonge dans un bain d'eau glacée. La cuisson est juste quand le jus qui s'écoule à la piqûre est clair, sans trace de sang."
+faq:
+  - question: "Quelle est la dose de sel pour le boudin noir ?"
+    answer: "18 g de sel fin par kilo de préparation totale. Pour une farce de 2 kg (1 L de sang ≈ 1 kg, 500 g d'oignons, 200 g de crème, 300 g de lard gras), cela fait 36 g de sel, plus 2 g de quatre-épices (cannelle, girofle, muscade, poivre)."
+  - question: "À quelle température et combien de temps cuire le boudin noir ?"
+    answer: "On poche les boudins à exactement 85 °C pendant 20 minutes, en maintenant une température constante avec un thermomètre. Il ne faut jamais faire bouillir l'eau : si ça bout, le boudin éclate et se vide. Le bouillon est interdit, seul le pochage doux convient."
+  - question: "Comment savoir si le boudin noir est cuit ?"
+    answer: "Au bout des 20 minutes, on sort un boudin et on le pique avec une aiguille à brider. Si le jus qui s'écoule est clair, sans trace de sang, le boudin est cuit à point. S'il est encore rosé, on prolonge la cuisson de quelques minutes, toujours à 85 °C."
+  - question: "Pourquoi faire fondre les oignons longtemps et sans coloration ?"
+    answer: "Les 500 g d'oignons doivent être ciselés finement puis cuits à feu très doux dans un peu de saindoux pendant au moins 20 à 30 minutes, jusqu'à devenir translucides et presque confits, sans aucune coloration. C'est le secret d'un boudin doux et savoureux : des oignons brûlés gâcheraient tout le goût. On les laisse refroidir avant de les mélanger."
+  - question: "Comment éviter que le boudin n'éclate à la cuisson ?"
+    answer: "Trois précautions : ne pas embosser trop serré (sinon ça éclate) ni trop lâche (boudins mous), piquer délicatement les boudins partout avec une aiguille fine pour laisser l'air s'échapper, et surtout pocher à 85 °C sans jamais atteindre l'ébullition. Après cuisson, un bain d'eau glacée stoppe la cuisson, fixe la couleur et assure une bonne tenue."
+  - question: "Quel sang utiliser et comment le préparer ?"
+    answer: "Du sang frais de porc, recueilli le matin même si possible, à raison de 1 litre. Il doit être défibriné (mélangé pour éviter qu'il ne coagule trop vite) mais pas cuit. C'est lui qui donne sa texture et sa couleur au boudin."
 ---
 
 Salut la team du bon goût ! 🐷
@@ -24,6 +38,18 @@ Pour un boudin qui déchire, pas de mystère : faut du bon, du frais, du qui sen
 *   **Sel fin 🧂:** 36 grammes (ça fait 18g par kilo de notre préparation totale, tu calcules bien Kévin ? On a 2kg de farce au total : 1L de sang ≈ 1kg, 500g oignons, 200g crème, 300g lard gras. Ça fait bien 2kg. Donc 18g x 2kg = 36g. Précision, mon p'tit, précision !).
 *   **Quatre-épices (mélange) 🌶️:** 2 grammes. Une pincée qui change tout ! Cannelle, girofle, muscade, poivre. Un délice.
 *   **Boyau de porc 🐷:** Quantité suffisante pour notre farce (environ 2,5 à 3 mètres de boyau de calibre moyen, type "gros menu" ou "chaudin"). Fais-le tremper dans l'eau tiède pour l'assouplir.
+
+Pour t'y retrouver d'un coup d'œil, Kévin, voilà le récap des dosages pour 2 kg de farce :
+
+| Ingrédient | Quantité | Repère |
+| --- | --- | --- |
+| Sang frais de porc | 1 L (≈ 1 kg) | Défibriné, hyper frais |
+| Oignons | 500 g | Fondus, sans coloration |
+| Crème liquide entière | 200 g | 30 % de matière grasse |
+| Lard gras de porc | 300 g | En dés de 5 mm |
+| Sel fin | 36 g | 18 g par kilo |
+| Quatre-épices | 2 g | Cannelle, girofle, muscade, poivre |
+| Boyau de porc | 2,5 à 3 m | Calibre moyen (gros menu / chaudin) |
 
 ### Préparation, Attention au Détail ! 🔪
 

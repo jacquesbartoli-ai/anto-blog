@@ -1,0 +1,39 @@
+---
+// GEO — Résumé en tête d'article ("TL;DR") : réponse directe à la question
+// que se pose le lecteur, extractible telle quelle par un moteur de réponse IA.
+interface Props {
+  summary?: string;
+}
+const { summary } = Astro.props;
+---
+
+{summary && (
+  <aside class="article-summary" aria-label="En résumé">
+    <p class="article-summary__label">En résumé</p>
+    <p class="article-summary__text">{summary}</p>
+  </aside>
+)}
+
+<style>
+  .article-summary {
+    border-left: 4px solid #C4622D;
+    background: #fbf6f1;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 2rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .article-summary__label {
+    margin: 0 0 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #C4622D;
+  }
+  .article-summary__text {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #2a2a2a;
+  }
+</style>

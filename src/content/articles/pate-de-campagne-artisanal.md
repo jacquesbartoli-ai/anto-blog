@@ -6,6 +6,18 @@ type: "recette"
 heroImage: "/images/articles/pate-de-campagne-artisanal-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Pour 1 kg de gorge de porc (50% maigre / 50% gras), comptez 300 g de foie de porc, 18 g de sel et 3 g de poivre noir par kilo, plus 1 œuf et 50 ml d'eau-de-vie. Hachez la gorge à la grille de 8 mm et le foie à 4 mm, pétrissez au moins 5 minutes jusqu'à ce que la farce devienne collante, puis laissez reposer au frigo 12 heures minimum. Cuisson en terrine au bain-marie à 160°C (chaleur tournante), environ 1h30 pour 1 kg, jusqu'à 72°C exactement à cœur (sonde obligatoire). Repos final au frigo de 48 heures minimum avant la première tranche."
+faq:
+  - question: "Quel ratio maigre / gras pour un pâté de campagne réussi ?"
+    answer: "On utilise de la gorge de porc avec 50% de maigre et 50% de gras. Le gras apporte le moelleux et le maigre le goût : cet équilibre évite un pâté sec ou trop gras."
+  - question: "Combien de sel et de poivre par kilo de farce ?"
+    answer: "La règle d'or en charcuterie : 18 g de sel fin par kilo et 3 g de poivre noir moulu par kilo, ni plus ni moins. Le sel assure à la fois le goût et la conservation, soyez précis."
+  - question: "À quelle température à cœur le pâté est-il cuit ?"
+    answer: "Le pâté est cuit à 72°C précisément à cœur, mesurés avec une sonde de cuisson plantée au centre : pas 70, pas 75. Le temps (environ 1h30 pour 1 kg à 160°C) n'est qu'indicatif, seule la température à cœur fait foi."
+  - question: "Quelle grille de hachage pour la gorge et pour le foie ?"
+    answer: "La gorge se hache à la grille de 8 mm pour une texture rustique avec de beaux morceaux ; le foie passe à la grille de 4 mm, plus fine, pour apporter de l'onctuosité sans devenir pâteux. Travaillez la viande bien froide pour que le gras ne fonde pas."
+  - question: "Combien de temps faut-il laisser reposer le pâté avant de le manger ?"
+    answer: "Deux repos sont nécessaires : la farce repose au frigo 12 heures minimum (idéalement une nuit) avant cuisson, puis le pâté cuit repose au frigo 48 heures minimum. Coupé avant, il serait friable et moins savoureux."
 ---
 
 Salut les gourmands ! 👋
@@ -61,6 +73,20 @@ Préchauffe ton four à 160°C (chaleur tournante, c'est top). Place ta terrine 
 ### La sonde, ta bible ! 🎯
 
 Enfourne le tout. Pour 1kg de pâté, compte environ 1h30 de cuisson. MAIS ATTENTION : le temps, c'est indicatif. Ce qui ne l'est pas, c'est la température à cœur. C'est OBLIGATOIRE d'avoir une sonde de cuisson. Sans ça, tu es à l'aveugle. Ton pâté est cuit quand il atteint précisément **72°C à cœur**. Pas 70, pas 75. 72°C. C'est le point de cuisson parfait : sûr et savoureux. Plante ta sonde au centre du pâté et surveille. Une fois les 72°C atteints, tu sors tout ça du four. Fais gaffe, c'est chaud ! 🔥
+
+Pour t'y retrouver d'un coup d'œil, voici les repères chiffrés clés :
+
+| Étape | Repère |
+| --- | --- |
+| Hachage gorge | grille 8 mm |
+| Hachage foie | grille 4 mm |
+| Sel | 18 g/kg |
+| Poivre noir | 3 g/kg |
+| Pétrissage | 5 min minimum |
+| Repos farce (frigo) | 12 h minimum |
+| Cuisson four | 160°C, bain-marie, ~1h30 pour 1 kg |
+| Température à cœur | 72°C exactement |
+| Repos final (frigo) | 48 h minimum |
 
 ## L'attente, la torture ! 😩
 

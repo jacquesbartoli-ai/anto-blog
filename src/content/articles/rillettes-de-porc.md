@@ -6,6 +6,18 @@ type: "recette"
 heroImage: "/images/articles/rillettes-de-porc-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Pour des rillettes de porc maison : confire 1,5 kg d'épaule persillée + 500 g de panne (graisse dorsale) coupées en cubes, salées à 16 g/kg sur le poids total viande + gras (soit 32 g de sel pour 2 kg), avec poivre, thym et laurier. Cuisson lente à l'étouffée au four à 140°C pendant 4 heures, couvercle fermé : la viande doit s'effilocher seule à la fourchette. On effiloche ensuite à la main (jamais au mixeur), on remélange dans le gras de cuisson pour l'onctuosité, on tasse en pots avec un chapeau de gras, puis on laisse maturer au frigo 12 à 24 h avant de déguster à température ambiante."
+faq:
+  - question: "Quel dosage de sel pour des rillettes de porc ?"
+    answer: "16 g de sel fin par kilo, calculé sur le poids total viande + gras. Pour 1,5 kg d'épaule et 500 g de panne (2 kg au total), cela fait 32 g de sel exactement. On pèse au gramme près : le sel assure à la fois le goût et la conservation."
+  - question: "À quelle température et combien de temps cuire les rillettes ?"
+    answer: "On confit au four à 140°C pendant 4 heures, cocotte en fonte couverte, sans y toucher. Si la viande résiste encore à la fourchette (rare à cette température et ce temps), on remet 30 minutes. La cuisson doit rester douce et lente, à l'étouffée."
+  - question: "Quels morceaux de porc choisir pour des rillettes ?"
+    answer: "De l'épaule de porc bien persillée pour le goût et le moelleux, et de la panne (graisse dorsale) qui fond pour donner le gras de cuisson et la texture onctueuse. On coupe l'épaule en cubes de 3-4 cm et la panne en cubes plus petits de 2-3 cm pour qu'elle fonde en premier."
+  - question: "Faut-il effilocher les rillettes au mixeur ?"
+    answer: "Non, jamais de mixeur ni de machine. On effiloche la viande tiédie à la main avec deux fourchettes : elle se défait toute seule. On remet ensuite l'effiloché dans le gras de cuisson et on mélange pour que le gras enveloppe chaque fibre, ce qui donne l'onctuosité."
+  - question: "Combien de temps faut-il laisser reposer les rillettes avant de les manger ?"
+    answer: "Au moins 12 à 24 heures au réfrigérateur. C'est la maturation : les arômes se développent, le gras se fige et la texture se forme. On tasse les rillettes en pots avec un chapeau de gras fondu par-dessus, qui les protège et prolonge la conservation. On déguste à température ambiante."
 ---
 
 Salut les gourmands ! 👋
@@ -27,6 +39,17 @@ Alors Jérémy, prends ton carnet. Ça, c'est non négociable. On pèse tout au 
 *   **Poivre noir concassé** : 5 g (un bon poivre, ça change tout)
 *   **Thym frais** : 2 belles branches (ou 1 cuillère à café de thym séché si tu n'as que ça, mais le frais, c'est mieux)
 *   **Feuilles de laurier** : 2 feuilles (celles de laurier du jardin de mémé, si tu peux !)
+
+Pour t'y retrouver d'un coup d'œil, Jérémy, voici le récap des quantités pour 2 kg de matière (viande + gras) :
+
+| Ingrédient | Quantité | Repère |
+| --- | --- | --- |
+| Épaule de porc | 1,5 kg | bien persillée, cubes de 3-4 cm |
+| Panne (graisse dorsale) | 500 g | cubes de 2-3 cm |
+| Sel fin | 32 g | 16 g/kg sur le poids total |
+| Poivre noir concassé | 5 g | — |
+| Thym frais | 2 branches | ou 1 c. à café séché |
+| Laurier | 2 feuilles | — |
 
 ### Préparation : Le Grand Découpage 🔪
 

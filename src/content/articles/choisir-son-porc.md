@@ -6,6 +6,18 @@ type: "metier"
 heroImage: "/images/articles/choisir-son-porc-hero.jpg"
 publishedDate: "2026-05-02"
 author: "Jacques Bartoli"
+summary: "Pour choisir un bon porc de charcuterie, privilégiez un éleveur identifié offrant une traçabilité complète (origine de chaque morceau, date d'abattage) et des cochons élevés en plein air, jamais sur caillebotis. Visez une race rustique qui grandit lentement, à la chair persillée qui tient la cuisson, nourrie de céréales, légumineuses et herbe, sans OGM. L'âge d'abattage doit être à maturité (ni trop jeune ni trop vieux) pour une viande ferme et savoureuse plutôt qu'aqueuse. À la découpe, contrôlez deux indices de qualité : un pH correct (meilleure conservation, tenue et tendreté, signe d'un animal non stressé) et un gras blanc rosé et ferme, jamais flasque ni jaune."
+faq:
+  - question: "Pourquoi privilégier un porc élevé en plein air plutôt que sur caillebotis ?"
+    answer: "Parce que les cochons qui courent, fouillent et voient le soleil donnent une viande plus saine et de meilleure qualité, contrairement aux bêtes élevées sur caillebotis qui ne voient jamais le soleil. La différence se sent dans l'assiette."
+  - question: "Quelle alimentation donne le meilleur goût à la viande de porc ?"
+    answer: "Une alimentation naturelle de céréales, légumineuses et herbe, sans OGM ni farines bizarres. Ce que le cochon mange devient ce que vous mangez : c'est cette alimentation qui apporte le goût subtil, légèrement noisette, de la viande."
+  - question: "À quel âge faut-il abattre le cochon pour une bonne charcuterie ?"
+    answer: "À maturité, ni trop jeune ni trop vieux : un juste équilibre. Un bon cochon prend du temps à grandir, et c'est cette patience qui donne une viande ferme et savoureuse plutôt qu'aqueuse."
+  - question: "À quoi sert de mesurer le pH de la viande ?"
+    answer: "Un bon pH garantit une viande qui se conserve mieux, avec une meilleure tenue et une meilleure tendreté. C'est aussi le signe d'un animal bien géré avant l'abattage, sans stress."
+  - question: "Comment reconnaître un gras de porc de qualité ?"
+    answer: "Un bon gras est blanc rosé, ferme et sent bon : c'est le véhicule des saveurs, il donne du fondant au jambon et de l'onctuosité à la terrine. À l'inverse, un gras flasque et jaune est un mauvais signe. Le gras de qualité prouve la bonne santé et la bonne alimentation du cochon."
 ---
 
 Salut à toi, ami gourmand !
@@ -53,5 +65,16 @@ Oui, je mesure le pH. C'est pas pour faire savant, c'est super important. Un bon
 ### La couleur du gras : le vrai trésor
 
 Le gras, c'est la vie ! Mais pas n'importe quel gras. Je veux un gras blanc rosé, ferme, qui sent bon. Pas un gras flasque et jaune pisseux. Le gras, c'est le véhicule des saveurs. C'est lui qui donne du fondant à ton jambon, de l'onctuosité à ta terrine. Un gras de qualité, c'est une preuve de la bonne santé et de la bonne alimentation du cochon. Fais-y attention la prochaine fois. 👀
+
+En résumé, voilà ce que je regarde, et ce que je fuis :
+
+| Critère | Ce que je cherche | Ce que je fuis |
+| --- | --- | --- |
+| Élevage | Plein air, cochons qui fouillent et voient le soleil | Caillebotis, bêtes qui ne voient jamais le soleil |
+| Race | Rustique, croissance lente, chair persillée qui tient la cuisson | Croisements industriels à gogo |
+| Alimentation | Céréales, légumineuses, herbe, sans OGM | Farines bizarres, cochonneries |
+| Âge d'abattage | À maturité, ni trop jeune ni trop vieux | Bête pressée, viande aqueuse |
+| pH | pH correct : meilleure conservation, tenue, tendreté | Animal stressé avant abattage |
+| Gras | Blanc rosé, ferme, qui sent bon | Flasque et jaune |
 
 Voilà, tu sais (presque) tout. Choisir mon porc, c'est pas juste une étape technique. C'est une philosophie. C'est le respect de l'animal, le respect de l'éleveur, et surtout, le respect de toi, mon client. C'est ça ma charcuterie. C'est ça ma conviction. Pas de blabla, du goût. À bientôt sur le blog ou derrière le comptoir ! 👋

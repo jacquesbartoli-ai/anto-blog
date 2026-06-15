@@ -5,9 +5,42 @@ import { getCollection } from 'astro:content';
 const articles = (await getCollection('articles'))
   .filter(a => a.data.type === 'recette')
   .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Le Blog Antò',
+      url: 'https://blog.heyanto.fr',
+      inLanguage: 'fr-FR',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Antò',
+        url: 'https://heyanto.fr',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://heyanto.fr/anto-logo.png',
+        },
+      },
+    },
+    {
+      '@type': 'Organization',
+      name: 'Antò',
+      url: 'https://heyanto.fr',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://heyanto.fr/anto-logo.png',
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout title="Les recettes">
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(siteJsonLd)} />
+  </Fragment>
   <h1>Les recettes</h1>
   <p class="page-subtitle">
     Le savoir-faire artisanal, une recette à la fois.

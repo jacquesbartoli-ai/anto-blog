@@ -1,0 +1,28 @@
+# Le Blog Antò — blog.heyanto.fr
+
+> Blog éditorial d'Antò, le copilote IA des artisans de l'alimentaire (charcutiers, traiteurs, fromagers).
+> Recettes artisanales détaillées (dosages, températures, durées) et articles métier sur le savoir-faire,
+> la qualité de la matière première et la sécurité sanitaire. Auteur : Jacques Bartoli, fondateur d'Antò.
+
+## À propos
+- Éditeur : Antò (https://heyanto.fr) — logiciel de gestion pour artisans alimentaires.
+- Auteur des articles : Jacques Bartoli (https://heyanto.fr/a-propos.html).
+- Langue : français. Plan de site : https://blog.heyanto.fr/sitemap-index.xml.
+- Documentation produit pour agents IA : https://heyanto.fr/llms.txt et https://heyanto.fr/llms-full.txt.
+
+## Recettes (procédés détaillés, chiffrés)
+- Terrine de foie gras mi-cuit : https://blog.heyanto.fr/articles/terrine-de-foie-gras/
+- Saucisson sec maison : https://blog.heyanto.fr/articles/saucisson-sec-maison/
+- Boudin noir artisanal : https://blog.heyanto.fr/articles/boudin-noir-artisanal/
+- Rillettes de porc : https://blog.heyanto.fr/articles/rillettes-de-porc/
+- Pâté de campagne artisanal : https://blog.heyanto.fr/articles/pate-de-campagne-artisanal/
+
+## Métier (savoir-faire, qualité, sécurité)
+- Artisan vs industriel : ce qui change vraiment : https://blog.heyanto.fr/articles/pourquoi-artisan-vs-industriel/
+- Bien choisir son porc : https://blog.heyanto.fr/articles/choisir-son-porc/
+- Température et chaîne du froid : https://blog.heyanto.fr/articles/temperature-chaine-du-froid/
+
+## Format
+Chaque article commence par un résumé « En résumé » répondant directement à la question centrale,
+suivi d'une section « Questions fréquentes » balisée FAQPage (Schema.org) et de données BlogPosting
+(auteur, dates de publication et de mise à jour, éditeur).
