@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/pate-lorrain-hero.jpg"
 publishedDate: "2026-06-16"
-author: "Jacques Bartoli"
+author: "BN"
 ---
 
 Salut l'artiste ! Prêt à mettre les mains à la pâte ? Aujourd'hui, on va faire un truc de dingue ensemble : le Pâté Lorrain. Oublie les trucs fades du supermarché, là, on parle du VRAI de VRAI. Celui qui te fait voyager direct au pays des saveurs. Accroche-toi, ça va être épique ! 🧑‍🍳

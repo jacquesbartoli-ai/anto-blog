@@ -10,7 +10,7 @@ const articles = defineCollection({
     heroImage: z.string(),
     publishedDate: z.string(),
     updatedDate: z.string().optional(),
-    author: z.string().default('Jacques Bartoli'),
+    author: z.string().default('JB'),
     // GEO — format citable : résumé en tête (réponse directe) + questions/réponses métier
     summary: z.string().optional(),
     faq: z

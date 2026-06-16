@@ -2,11 +2,11 @@
 
 > Blog éditorial d'Antò, le copilote IA des artisans de l'alimentaire (charcutiers, traiteurs, fromagers).
 > Recettes artisanales détaillées (dosages, températures, durées) et articles métier sur le savoir-faire,
-> la qualité de la matière première et la sécurité sanitaire. Auteur : Jacques Bartoli, fondateur d'Antò.
+> la qualité de la matière première et la sécurité sanitaire. Rédigé par l'équipe éditoriale d'Antò.
 
 ## À propos
 - Éditeur : Antò (https://heyanto.fr) — logiciel de gestion pour artisans alimentaires.
-- Auteur des articles : Jacques Bartoli (https://heyanto.fr/a-propos.html).
+- Auteurs des articles : équipe éditoriale Antò — JB, BN, PM, TG (https://heyanto.fr/a-propos.html).
 - Langue : français. Plan de site : https://blog.heyanto.fr/sitemap-index.xml.
 - Documentation produit pour agents IA : https://heyanto.fr/llms.txt et https://heyanto.fr/llms-full.txt.
 

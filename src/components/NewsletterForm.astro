@@ -88,7 +88,8 @@ const apiUrl = 'https://anto-pwa.fly.dev/fr/api/newsletter/subscribe';
     padding: 0.75rem 1rem;
     border: 1px solid var(--color-border, #e8e0d8);
     border-radius: 8px;
-    font-size: 0.95rem;
+    /* 16px min : évite le zoom automatique d'iOS Safari au focus */
+    font-size: 1rem;
     font-family: var(--font-body, 'Inter', sans-serif);
     background: var(--color-bg, #faf9f7);
     color: var(--color-text, #2d2520);

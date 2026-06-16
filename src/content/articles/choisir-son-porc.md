@@ -5,7 +5,7 @@ category: "Métier"
 type: "metier"
 heroImage: "/images/articles/choisir-son-porc-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "BN"
 summary: "Pour choisir un bon porc de charcuterie, privilégiez un éleveur identifié offrant une traçabilité complète (origine de chaque morceau, date d'abattage) et des cochons élevés en plein air, jamais sur caillebotis. Visez une race rustique qui grandit lentement, à la chair persillée qui tient la cuisson, nourrie de céréales, légumineuses et herbe, sans OGM. L'âge d'abattage doit être à maturité (ni trop jeune ni trop vieux) pour une viande ferme et savoureuse plutôt qu'aqueuse. À la découpe, contrôlez deux indices de qualité : un pH correct (meilleure conservation, tenue et tendreté, signe d'un animal non stressé) et un gras blanc rosé et ferme, jamais flasque ni jaune."
 faq:
   - question: "Pourquoi privilégier un porc élevé en plein air plutôt que sur caillebotis ?"

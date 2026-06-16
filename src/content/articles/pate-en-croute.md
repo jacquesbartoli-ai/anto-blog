@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/pate-en-croute-hero.jpg"
 publishedDate: "2026-06-16"
-author: "Jacques Bartoli"
+author: "JB"
 ---
 
 ## Le Pâté en Croûte : Quand l'Art Rencontre la Gourmandise !

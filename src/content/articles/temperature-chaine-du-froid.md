@@ -5,7 +5,7 @@ category: "Métier"
 type: "metier"
 heroImage: "/images/articles/temperature-chaine-du-froid-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "BN"
 summary: "La chaîne du froid garde les produits au froid sans rupture, de l'abattoir jusqu'au client : c'est essentiel car les bactéries se multiplient à la tiédeur et une rupture ouvre la porte aux intoxications. Concrètement, on relève les températures trois fois par jour (matin, midi, soir) avec des sondes digitales, filaires et infrarouges, on sépare les chambres froides par usage (viande fraîche, salé, produits finis), on sonde les matières premières à la réception et on jette sans hésiter tout produit à risque après une panne. Le HACCP sert de cadre pour identifier les points critiques et tracer les relevés."
 faq:
   - question: "Pourquoi la chaîne du froid est-elle vitale en charcuterie ?"

@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/pate-de-campagne-artisanal-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "PM"
 summary: "Pour 1 kg de gorge de porc (50% maigre / 50% gras), comptez 300 g de foie de porc, 18 g de sel et 3 g de poivre noir par kilo, plus 1 œuf et 50 ml d'eau-de-vie. Hachez la gorge à la grille de 8 mm et le foie à 4 mm, pétrissez au moins 5 minutes jusqu'à ce que la farce devienne collante, puis laissez reposer au frigo 12 heures minimum. Cuisson en terrine au bain-marie à 160°C (chaleur tournante), environ 1h30 pour 1 kg, jusqu'à 72°C exactement à cœur (sonde obligatoire). Repos final au frigo de 48 heures minimum avant la première tranche."
 faq:
   - question: "Quel ratio maigre / gras pour un pâté de campagne réussi ?"

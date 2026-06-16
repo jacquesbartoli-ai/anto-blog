@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/terrine-de-foie-gras-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "PM"
 summary: "Pour une terrine de foie gras mi-cuit (1 foie de canard cru déveiné de 500-600 g), assaisonnez à 12 g de sel, 2 g de poivre blanc et 2 g de sucre par kilo, plus 30 ml de Porto et 20 ml de Cognac, puis laissez mariner 12 à 24 h au frais. Cuisez au bain-marie à 110°C pendant environ 40 min jusqu'à une température à cœur de 65°C (ne jamais dépasser 68°C sous peine de voir le foie fondre). Pressez la terrine tiède sous un poids, puis laissez reposer au réfrigérateur au moins 48 h (idéalement 72 h). Elle se conserve filmée 10 à 12 jours au frais."
 faq:
   - question: "Quel dosage de sel, poivre et sucre par kilo de foie gras ?"

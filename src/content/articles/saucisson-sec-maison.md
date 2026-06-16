@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/saucisson-sec-maison-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "JB"
 summary: "Pour un saucisson sec maison, partez sur une mêlée 70% maigre (épaule de porc) / 30% gras dur (lard de dos), hachée à la grille de 8-10 mm. Dosez par kilo de mêlée : 28 g de sel, 4 g de poivre noir et 0,3 g de salpêtre (pesé au gramme près), plus vin rouge et ail. Embossez en boyau naturel de porc (38-42 mm), puis fermentez 48 h à 20°C et 90% d'humidité, et séchez environ 5 semaines à 12-14°C et 75% d'humidité. Le saucisson est prêt quand il a perdu 30 à 35% de son poids initial et qu'il est ferme sans être dur."
 faq:
   - question: "Quel ratio maigre/gras pour un saucisson sec maison ?"

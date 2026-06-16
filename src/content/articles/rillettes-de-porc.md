@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/rillettes-de-porc-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "TG"
 summary: "Pour des rillettes de porc maison : confire 1,5 kg d'épaule persillée + 500 g de panne (graisse dorsale) coupées en cubes, salées à 16 g/kg sur le poids total viande + gras (soit 32 g de sel pour 2 kg), avec poivre, thym et laurier. Cuisson lente à l'étouffée au four à 140°C pendant 4 heures, couvercle fermé : la viande doit s'effilocher seule à la fourchette. On effiloche ensuite à la main (jamais au mixeur), on remélange dans le gras de cuisson pour l'onctuosité, on tasse en pots avec un chapeau de gras, puis on laisse maturer au frigo 12 à 24 h avant de déguster à température ambiante."
 faq:
   - question: "Quel dosage de sel pour des rillettes de porc ?"

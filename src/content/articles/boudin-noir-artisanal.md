@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/boudin-noir-artisanal-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "JB"
 summary: "Le boudin noir artisanal se prépare avec une farce de 2 kg : 1 L de sang frais de porc défibriné (≈ 1 kg), 500 g d'oignons fondus à feu très doux 20-30 min sans coloration, 200 g de crème entière 30 %, 300 g de lard gras en dés de 5 mm, 36 g de sel (18 g/kg) et 2 g de quatre-épices. Après embossage en boyau (calibre moyen, 2,5 à 3 m) et piquage à l'aiguille, on poche les boudins à exactement 85 °C pendant 20 minutes, sans jamais faire bouillir, puis on les plonge dans un bain d'eau glacée. La cuisson est juste quand le jus qui s'écoule à la piqûre est clair, sans trace de sang."
 faq:
   - question: "Quelle est la dose de sel pour le boudin noir ?"

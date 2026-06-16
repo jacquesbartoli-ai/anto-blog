@@ -5,7 +5,7 @@ category: "Charcuterie"
 type: "recette"
 heroImage: "/images/articles/pate-de-foie-hero.jpg"
 publishedDate: "2026-06-16"
-author: "Jacques Bartoli"
+author: "TG"
 ---
 
 Salut l'ami ! 🧑‍🍳 Aujourd'hui, on met les mains dans le cambouis... euh, la viande ! On va se faire un pâté de foie maison, le truc qui te rend fier comme un paon et qui cloue le bec à tous les charcutiers du coin. Tu vas voir, c'est pas la mer à boire, juste un peu de patience et hop, la magie opère. Prêt ? C'est parti !

@@ -5,7 +5,7 @@ category: "Métier"
 type: "metier"
 heroImage: "/images/articles/pourquoi-artisan-vs-industriel-hero.jpg"
 publishedDate: "2026-05-02"
-author: "Jacques Bartoli"
+author: "PM"
 summary: "La différence artisan/industriel n'est pas une question de taille mais de méthode. L'artisan mise sur la maturation naturelle (semaines à mois) qui concentre les saveurs en faisant perdre du poids au produit : un jambon sec part à 10 kg et sort à 7-8 kg. L'industriel accélère le séchage et injecte eau, protéines et phosphates pour limiter cette perte (10 kg → environ 9,5 kg), avec une viande achetée au moins cher et une longue liste d'additifs (conservateurs, exhausteurs, colorants, agents de texture). Côté artisan : sel, poivre, épices, parfois des ferments naturels, point. C'est ce qui explique le prix plus élevé chez l'artisan."
 faq:
   - question: "Pourquoi un saucisson ou un jambon artisanal est-il plus cher qu'en supermarché ?"
