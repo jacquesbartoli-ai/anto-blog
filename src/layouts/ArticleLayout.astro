@@ -48,7 +48,7 @@ const blogPosting = {
     <img class="hero-image" src={frontmatter.heroImage} alt={frontmatter.title} />
     <span class="category-tag">{frontmatter.category}</span>
     <h1>{frontmatter.title}</h1>
-    <p class="meta">{frontmatter.publishedDate} — par <a href="https://heyanto.fr/a-propos.html" rel="author">{frontmatter.author}</a></p>
+    <p class="meta">{frontmatter.publishedDate} — par <a href="https://heyanto.fr/a-propos.html" rel="author" data-cta="article_auteur">{frontmatter.author}</a></p>
     {frontmatter.updatedDate && (
       <p class="meta meta-updated">Mis à jour le {frontmatter.updatedDate}</p>
     )}
